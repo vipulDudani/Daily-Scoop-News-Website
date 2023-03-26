@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DailyScoop news Website</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        body{
+            background-color:orange;
+        }
+
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          transition: 0.3s;
+          width: 30%;
+          border-radius: 5px;
+          padding:20px;
+          margin:10px;
+        }
+        
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        
+        img {
+          border-radius: 5px 5px 0 0;
+          width:200px;
+        }
+        
+        .container {
+          padding: 2px 16px;
+        }
+
+        .navbar-toggler{
+          background-color:white;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+          .card {
+              width: 48%;
+              margin: 5px;
+          }
+
+        
+
+
+      }
+
+          @media screen and (max-width: 530px) {
+            .card {
+              width:100%;
+              margin:5px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content:center;
+            }
+
+          img {
+              width: 100%;
+          }
+        }
+
+</style>
+
+
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-black">
+    <div class="container-fluid">
+      <a href="/?q=All&pageno=1" class="navbar-brand text-light" href="#">DailyScoop</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active text-light text-center" aria-current="page" href="/?q=All&pageno=1">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light text-center" href="/?q=Economy&pageno=1">Economy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light text-center" href="/?q=Sports&pageno=1">Sports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light text-center" href="/?q=Politics&pageno=1">Politics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light text-center" href="/?q=Entertainment&pageno=1">Entertainment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light text-center" href="/?q=Education&pageno=1">Education</a>
+          </li>
+
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2 border border-dark" name="q" type="search" placeholder="Type Here..." aria-label="Search" autocomplete="off">
+          <input class="form-control me-2" name="pageno" type="hidden" value="1" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-info" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container  mx-auto">
+    <h1 class="text-center my-2"><span id="queryText"></span> - DailyScoop News (<span id="queryResults"></span> results)</h1>
+    <div id="content" class="row">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="prevNext my-4 d-flex justify-content-center">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item "><a id="pre" class="page-link border-dark" href="#">Previous</a></li>
+
+          <li class="page-item"><a id="next" class="page-link border-dark" href="#">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+  </script>
+  <script>
+    let articlesPerPage=100;
+    let totalPages;
+    console.log("Hey I am javascript")
+    let query = window.location.search.split("?")[1].split("&")[0].split("=")[1];
+    let page = parseInt(window.location.search.split("?")[1].split("&")[1].split("=")[1]);
+    console.log(query, page)
+    const fetchNews = async (query, pageNo)=>{
+        let a = await fetch(`/api?q=${query}&apiKey=4fa4655e744e4295be7dd67185e46224&pageSize=12&page=${pageNo}`)
+        let r = await a.json()
+        console.log(r)
+        queryText.innerHTML = query.replace("+", " ")
+        queryResults.innerHTML = r.totalResults
+        totalPages = r.totalResults/articlesPerPage;
+        pre.href = `/?q=${query}&pageno=${page-1}`
+        next.href = `/?q=${query}&pageno=${page+1}`
+        let str = ""
+        for(let item of r.articles){
+          let date = new Date(item.publishedAt).toLocaleDateString()
+          str = str + `
+    <div class="card">
+        <img src="${item.urlToImage}" alt="Avatar" style="width:100%">
+        <br>
+        <div class="container">
+          <h4><b>${item.title}</b></h4> 
+        <br>
+        <span class="fw-bold">Published </span> : ${date}
+        <br><br>
+        <p>${item.description}</p> 
+        <a target="_blank" href="${item.url}" class="btn btn-primary">Explore More...</a>
+        </div>
+    </div>
+    
+    `
+        }
+        content.innerHTML = str;
+    }
+
+    fetchNews(query, page)
+
+    console.log(articles.length);
+
+  </script>
+
+  
+
+</body>
+
+</html>
