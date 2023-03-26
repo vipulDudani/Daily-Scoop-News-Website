@@ -11,4 +11,6 @@ Dailyscoop also includes social media integration, allowing users to share artic
 Overall, Dailyscoop is a user-friendly and feature-rich news website that provides users with easy access to the latest news stories from around the world. The combination of HTML, CSS, and JavaScript, along with the powerful News API, makes it possible to create a dynamic and engaging website that is both visually appealing and highly functional.
 
 
+![news1](https://user-images.githubusercontent.com/128981674/227787680-e14d80a4-f94f-4cb1-89a8-8d7073af0688.PNG)
+
 
