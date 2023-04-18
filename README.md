@@ -9,10 +9,10 @@ In addition to the homepage, Dailyscoop features several other pages, including 
 
 The website also includes a feature that allows users to save articles for later reading. When users save an article, it is added to their personal reading list, which can be accessed from any device with an internet connection. This feature helps users keep track of articles they want to read later, without the need for bookmarks or other external tools.
 
-Dailyscoop also includes social media integration, allowing users to share articles on their favorite social media platforms with just a few clicks. This feature helps to promote the website and increase its visibility among potential users.
-
-
 ![news2](https://user-images.githubusercontent.com/128981674/227787795-451ebfc9-56a4-458f-baab-7b1047ea5796.PNG)
+
+
+Dailyscoop also includes social media integration, allowing users to share articles on their favorite social media platforms with just a few clicks. This feature helps to promote the website and increase its visibility among potential users.
 
 
 Overall, Dailyscoop is a user-friendly and feature-rich news website that provides users with easy access to the latest news stories from around the world. The combination of HTML, CSS, and JavaScript, along with the powerful News API, makes it possible to create a dynamic and engaging website that is both visually appealing and highly functional.
