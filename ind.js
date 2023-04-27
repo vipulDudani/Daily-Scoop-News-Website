@@ -1,4 +1,8 @@
-
+const express = require('express')
+const path = require('path')
+const axios = require('axios')
+const app = express()
+const port = 3000
 
 app.get('/', (req, res) => {
   res.sendFile("ind.html", { root: path.join(__dirname) } )
