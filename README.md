@@ -1,5 +1,8 @@
 Dailyscoop is a news website created using HTML, CSS, and JavaScript, which aggregates the latest news stories from around the world using the News API. The website has been designed to provide an easy-to-use and visually appealing interface for users to access news stories quickly and efficiently.
 
+DEMO LINK :    https://daily-scoop-news.onrender.com/
+
+
 The homepage of Dailyscoop displays the latest news stories, with headlines and brief summaries for each story. Users can click on any story to read the full article on a separate page. The homepage also includes a search bar, which allows users to search for news stories by keywords or phrases.
 
 ![news1](https://user-images.githubusercontent.com/128981674/227787680-e14d80a4-f94f-4cb1-89a8-8d7073af0688.PNG)
